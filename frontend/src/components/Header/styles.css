@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-primary);
+}
+
+.header .topbar-container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-text-in-primary);
+  padding: 1.6rem 0;
+}
+
+.header .topbar-container > a {
+  height: 3.2rem;
+  transition: opacity 0.3s;
+}
+
+.header .topbar-container > a:hover {
+  opacity: 0.6;
+}
+
+.header .topbar-container > img {
+  height: 2rem;
+}
+
+.header-content {
+  width: 90%;
+  margin: 3.2rem auto;
+  position: relative;
+}
+
+.header-content strong {
+  font: 700 3.6rem Archivo;
+  line-height: 4.2rem;
+  color: var(--color-title-in-primary);
+}
