@@ -12,7 +12,7 @@ const Home: React.FC = () => {
       <div id="homepage-content" className="container">
         <div className="logo-container">
           <img src={logo} alt="logo" />
-          <h2>Sua plataforma de estudos online</h2>
+          <h2>Sua plataforma de estudos online.</h2>
         </div>
 
         <img src={landingImage} alt="landing" className="landing-image" />
@@ -29,8 +29,7 @@ const Home: React.FC = () => {
         </div>
 
         <span className="total-connections">
-          Total de 100 conexões já realizadas{' '}
-          <img src={heartIcon} alt="heart" />
+          Total de 100 conexões já realizadas
         </span>
       </div>
     </div>
