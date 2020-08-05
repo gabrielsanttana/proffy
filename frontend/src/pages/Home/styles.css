@@ -38,8 +38,8 @@
 }
 
 .buttons-container a {
-  width: 30rem;
-  height: 10.4rem;
+  width: 28rem;
+  height: 8.4rem;
   border-radius: 0.8rem;
   font: 700 2rem Archivo;
   color: var(--color-button-text);

@@ -4,7 +4,11 @@ import logo from '../../assets/images/logo.svg';
 import arrowBack from '../../assets/icons/back.svg';
 import './styles.css';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  title: string;
+}
+
+const Header: React.FC<HeaderProps> = ({title, children}) => {
   return (
     <header className="header">
       <div className="topbar-container">
@@ -16,7 +20,9 @@ const Header: React.FC = () => {
       </div>
 
       <div className="header-content">
-        <strong>Estes são os proffys disponíveis.</strong>
+        <strong>{title}</strong>
+
+        {children}
       </div>
     </header>
   );

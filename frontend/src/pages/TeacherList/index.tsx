@@ -5,7 +5,25 @@ import './styles.css';
 const TeacherList: React.FC = () => {
   return (
     <div id="teacher-list-container" className="container">
-      <Header />
+      <Header title="Que incrível que você quer dar aulas!">
+        <form id="search-teachers">
+          <div className="input-box">
+            <label htmlFor="subject">Matéria</label>
+            <input type="text" id="subject" autoFocus />
+          </div>
+
+          <div className="input-box">
+            <label htmlFor="weekDay">Dia da semana</label>
+            <input type="text" id="weekDay" />
+          </div>
+
+          <div className="input-box">
+            <label htmlFor="hour">Horário</label>
+            <input type="text" id="hour" />
+          </div>
+        </form>
+      </Header>
+
       <main></main>
     </div>
   );
