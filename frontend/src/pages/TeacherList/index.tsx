@@ -5,7 +5,7 @@ import './styles.css';
 const TeacherList: React.FC = () => {
   return (
     <div id="teacher-list-container" className="container">
-      <Header title="Que incrível que você quer dar aulas!">
+      <Header title="Estes são os proffys disponíveis.">
         <form id="search-teachers">
           <div className="input-box">
             <label htmlFor="subject">Matéria</label>

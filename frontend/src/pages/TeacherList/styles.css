@@ -45,6 +45,10 @@
     grid-template-columns: repeat(3, 1fr);
     column-gap: 1rem;
     position: absolute;
-    bottom: -44px;
+    bottom: -28px;
+  }
+
+  #search-teachers .input-box + .input-box {
+    margin-top: 0;
   }
 }
