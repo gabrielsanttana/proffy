@@ -35,6 +35,11 @@
   font: 1.6rem Archivo;
 }
 
+#teacher-list-container main {
+  width: 90%;
+  margin: 3.2rem auto;
+}
+
 @media only screen and (min-width: 764px) {
   #teacher-list-container {
     max-width: 100%;
@@ -50,5 +55,11 @@
 
   #search-teachers .input-box + .input-box {
     margin-top: 0;
+  }
+
+  #teacher-list-container main {
+    max-width: 740px;
+    padding: 3.2px 0;
+    margin: 3.2rem auto 0;
   }
 }

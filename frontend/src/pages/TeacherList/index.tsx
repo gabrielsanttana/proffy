@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../../components/Header';
+import TeacherCard from '../../components/TeacherCard';
 import './styles.css';
 
 const TeacherList: React.FC = () => {
@@ -24,7 +25,9 @@ const TeacherList: React.FC = () => {
         </form>
       </Header>
 
-      <main></main>
+      <main>
+        <TeacherCard />
+      </main>
     </div>
   );
 };

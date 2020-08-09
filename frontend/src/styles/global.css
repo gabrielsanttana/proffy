@@ -49,6 +49,7 @@ textarea,
 body {
   -webkit-font-smoothing: antialiased;
   font: 500 1.6rem Poppins;
+  color: var(--color-text-base);
 }
 
 .container {

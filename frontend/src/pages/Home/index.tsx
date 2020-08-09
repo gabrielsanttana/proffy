@@ -4,7 +4,6 @@ import logo from '../../assets/images/logo.svg';
 import landingImage from '../../assets/images/landing.svg';
 import studyIcon from '../../assets/icons/study.svg';
 import teachIcon from '../../assets/icons/give-classes.svg';
-import heartIcon from '../../assets/icons/purple-heart.svg';
 import './styles.css';
 
 const Home: React.FC = () => {
