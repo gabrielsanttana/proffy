@@ -1,10 +1,11 @@
 import {Router} from 'express';
-import ClassesController from './controllers/ClassesController';
+import ClassController from './controllers/ClassController';
 
 const routes = Router();
 
-const classesController = new ClassesController();
+const classController = new ClassController();
 
-routes.post('/classes', classesController.create);
+routes.post('/classes', classController.create);
+routes.get('/classes', classController.getAll);
 
 export default routes;

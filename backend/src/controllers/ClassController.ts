@@ -2,7 +2,13 @@ import {Request, Response} from 'express';
 import convertHourToMinutes from '../utils/convertHourToMinutes';
 import database from '../database/connection';
 
-interface CreateClassRequest {
+interface Schedule {
+  week_day: number;
+  from: string;
+  to: string;
+}
+
+interface CreateRequest {
   name: string;
   avatar: string;
   whatsapp: string;
@@ -12,13 +18,7 @@ interface CreateClassRequest {
   schedule: Schedule[];
 }
 
-interface Schedule {
-  week_day: number;
-  from: string;
-  to: string;
-}
-
-class ClassesController {
+class ClassController {
   async create(request: Request, response: Response) {
     const {
       name,
@@ -28,7 +28,7 @@ class ClassesController {
       price,
       schedule,
       whatsapp,
-    } = request.body as CreateClassRequest;
+    } = request.body as CreateRequest;
 
     const trx = await database.transaction();
 
@@ -70,6 +70,27 @@ class ClassesController {
       return response.status(400).json({error: error.message});
     }
   }
+
+  async getAll(request: Request, response: Response) {
+    const subject = request.query.subject as string;
+    const week_day = request.query.week_day as string;
+    const hour = request.query.hour as string;
+
+    if (!subject || !week_day || !hour) {
+      return response
+        .status(400)
+        .json({error: "Filters to search for classes weren't provided"});
+    }
+
+    const timeInMinutes = convertHourToMinutes(hour);
+
+    const searchedClasses = await database('classes')
+      .where('classes.subject', '=', subject)
+      .join('users', 'classes.user_id', '=', 'users.id')
+      .select(['classes.*', 'users.*']);
+
+    return response.status(200).json(searchedClasses);
+  }
 }
 
-export default ClassesController;
+export default ClassController;
