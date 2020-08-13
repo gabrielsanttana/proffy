@@ -23,7 +23,7 @@ const App: React.FC = () => {
   if (fontsLoaded) {
     return (
       <>
-        <StatusBar style="auto" />
+        <StatusBar style="light" />
         <Router />
       </>
     );
