@@ -6,7 +6,7 @@ import styles from './styles';
 const Favorites: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Header title="Proffys disponíveis" />
+      <Header title="Meu proffys favoritos" />
       <Text>Favorites</Text>
     </View>
   );
