@@ -10,7 +10,7 @@ import {
   Poppins_400Regular,
   Poppins_600SemiBold,
 } from '@expo-google-fonts/poppins';
-import Router from './src/routes';
+import Router from './src/routes/AppStack';
 
 const App: React.FC = () => {
   let [fontsLoaded] = useFonts({
