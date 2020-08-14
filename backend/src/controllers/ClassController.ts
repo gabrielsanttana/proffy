@@ -85,6 +85,14 @@ class ClassController {
     const timeInMinutes = convertHourToMinutes(hour);
 
     const searchedClasses = await database('classes')
+      .whereExists(function () {
+        this.select('class_schedules.*')
+          .from('class_schedules')
+          .whereRaw('`class_schedules`.`class_id` = `classes`.`id`')
+          .whereRaw('`class_schedules`.`week_day` = ??', [Number(week_day)])
+          .whereRaw('`class_schedules`.`from` <= ??', [Number(timeInMinutes)])
+          .whereRaw('`class_schedules`.`to` > ??', [Number(timeInMinutes)]);
+      })
       .where('classes.subject', '=', subject)
       .join('users', 'classes.user_id', '=', 'users.id')
       .select(['classes.*', 'users.*']);
