@@ -65,7 +65,7 @@ class ClassController {
 
       return response
         .status(201)
-        .json({message: 'Class schedule successfully created!'});
+        .json({message: 'Class and schedule successfully created!'});
     } catch (error) {
       return response.status(400).json({error: error.message});
     }
