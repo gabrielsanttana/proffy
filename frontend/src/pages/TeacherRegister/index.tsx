@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../../components/Header';
+import Input from '../../components/Input';
 import './styles.css';
 
 const Register: React.FC = () => {
@@ -14,20 +15,9 @@ const Register: React.FC = () => {
         <fieldset>
           <legend>Seus dados</legend>
 
-          <div className="input-box">
-            <label htmlFor="name">Nome completo</label>
-            <input type="text" id="name" autoFocus />
-          </div>
-
-          <div className="input-box">
-            <label htmlFor="avatar">Avatar</label>
-            <input type="text" id="avatar" />
-          </div>
-
-          <div className="input-box">
-            <label htmlFor="whatsapp">Whatsapp</label>
-            <input type="text" id="whatsapp" />
-          </div>
+          <Input name="name" label="Nome completo" type="text" autoFocus />
+          <Input name="avatar" label="Avatar" type="text" />
+          <Input name="whatsapp" label="Whatsapp" type="text" />
         </fieldset>
       </main>
     </div>

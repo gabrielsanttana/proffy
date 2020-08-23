@@ -1,0 +1,23 @@
+.input-box {
+  position: relative;
+}
+
+.input-box + .input-box {
+  margin-top: 1.4rem;
+}
+
+.input-box label {
+  font-size: 1.4rem;
+}
+
+.input-box input {
+  width: 100%;
+  height: 5.6rem;
+  margin-top: 0.8rem;
+  border-radius: 0.8rem;
+  background-color: var(--color-input-background);
+  border: 1px solid var(--color-line-in-white);
+  outline: none;
+  padding: 0 1.6rem;
+  font: 1.6rem Archivo;
+}
