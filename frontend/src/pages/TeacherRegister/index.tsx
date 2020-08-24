@@ -1,9 +1,54 @@
 import React from 'react';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
+import Select from '../../components/Select';
+import warningIcon from '../../assets/icons/warning.svg';
 import './styles.css';
 
 const Register: React.FC = () => {
+  const subjectOptions = [
+    {
+      label: 'Artes',
+      value: 'Artes',
+    },
+    {
+      label: 'Biologia',
+      value: 'Biologia',
+    },
+    {
+      label: 'Ciências',
+      value: 'Ciências',
+    },
+    {
+      label: 'Educação física',
+      value: 'Educação física',
+    },
+    {
+      label: 'Física',
+      value: 'Física',
+    },
+    {
+      label: 'Geografia',
+      value: 'Geografia',
+    },
+    {
+      label: 'História',
+      value: 'História',
+    },
+    {
+      label: 'Matemática',
+      value: 'Matemática',
+    },
+    {
+      label: 'Português',
+      value: 'Português',
+    },
+    {
+      label: 'Química',
+      value: 'Química',
+    },
+  ];
+
   return (
     <div id="teacher-register-container" className="container">
       <Header
@@ -19,6 +64,27 @@ const Register: React.FC = () => {
           <Input name="avatar" label="Avatar" type="text" />
           <Input name="whatsapp" label="Whatsapp" type="text" />
         </fieldset>
+
+        <fieldset>
+          <legend>Sobre a aula</legend>
+
+          <Select name="subject" label="Matéria" options={subjectOptions} />
+          <Input
+            name="price"
+            label="Custo da sua aula por hora (em R$)"
+            type="text"
+          />
+        </fieldset>
+
+        <footer>
+          <p>
+            <img src={warningIcon} alt="Aviso importante" />
+            Importante! <br />
+            Preencha todos os dados
+          </p>
+
+          <button type="button">Salvar cadastro</button>
+        </footer>
       </main>
     </div>
   );

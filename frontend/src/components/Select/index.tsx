@@ -14,7 +14,7 @@ export interface SelectOption {
 
 const Select: React.FC<SelectProps> = ({label, name, options, ...rest}) => {
   return (
-    <div className="select-block">
+    <div className="select-box">
       <label htmlFor={name}>{label}</label>
       <select name={name} id={name} {...rest}>
         <option value="" disabled selected hidden>
