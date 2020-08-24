@@ -118,6 +118,17 @@
     column-gap: 1.6rem;
   }
 
+  #teacher-register-container
+    main
+    fieldset
+    .schedule-section
+    + #teacher-register-container
+    main
+    fieldset
+    .schedule-section {
+    margin-top: 1.6rem;
+  }
+
   #teacher-register-container main fieldset .schedule-section .input-box {
     margin-top: 0 !important;
   }

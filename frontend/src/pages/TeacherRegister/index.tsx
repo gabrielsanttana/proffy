@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
@@ -6,6 +6,19 @@ import warningIcon from '../../assets/icons/warning.svg';
 import './styles.css';
 
 const Register: React.FC = () => {
+  const [formData, setFormData] = useState({});
+  const [schedules, setSchedules] = useState([
+    {
+      weekDay: '',
+      from: '',
+      to: '',
+    },
+  ]);
+
+  const addNewSchedule = () => {
+    setSchedules([...schedules]);
+  };
+
   const subjectOptions = [
     {
       label: 'Artes',
@@ -110,18 +123,22 @@ const Register: React.FC = () => {
         <fieldset>
           <legend>
             Horários disponíveis
-            <button type="button"> + Novo horário</button>
+            <button type="button" onClick={addNewSchedule}>
+              + Novo horário
+            </button>
           </legend>
 
-          <div className="schedule-section">
-            <Select
-              name="weekDay"
-              label="Dia da semana"
-              options={weekDayOptions}
-            />
-            <Input name="from" label="Das" type="time" />
-            <Input name="to" label="Às" type="time" />
-          </div>
+          {schedules.map((schedule) => (
+            <div className="schedule-section">
+              <Select
+                name="weekDay"
+                label="Dia da semana"
+                options={weekDayOptions}
+              />
+              <Input name="from" label="Das" type="time" />
+              <Input name="to" label="Às" type="time" />
+            </div>
+          ))}
         </fieldset>
 
         <footer>
