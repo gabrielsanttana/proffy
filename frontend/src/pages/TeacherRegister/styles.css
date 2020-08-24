@@ -42,6 +42,19 @@
   border-bottom: 1px solid var(--color-line-in-white);
 }
 
+#teacher-register-container main fieldset legend button {
+  border: 0;
+  background-color: transparent;
+  color: var(--color-primary);
+  font: 700 1.6rem Archivo;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#teacher-register-container main fieldset legend button:hover {
+  color: var(--color-primary-dark);
+}
+
 #teacher-register-container main label {
   color: var(--color-text-complement);
 }
@@ -97,6 +110,16 @@
 
   #teacher-register-container main fieldset {
     padding: 0 6.4rem;
+  }
+
+  #teacher-register-container main fieldset .schedule-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    column-gap: 1.6rem;
+  }
+
+  #teacher-register-container main fieldset .schedule-section .input-box {
+    margin-top: 0 !important;
   }
 
   #teacher-register-container main footer {

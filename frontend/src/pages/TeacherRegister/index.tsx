@@ -49,6 +49,37 @@ const Register: React.FC = () => {
     },
   ];
 
+  const weekDayOptions = [
+    {
+      label: 'Domingo',
+      value: '0',
+    },
+    {
+      label: 'Segunda-feira',
+      value: '1',
+    },
+    {
+      label: 'Terça-feira',
+      value: '2',
+    },
+    {
+      label: 'Quarta-feira',
+      value: '3',
+    },
+    {
+      label: 'Quinta-feira',
+      value: '4',
+    },
+    {
+      label: 'Sexta-feira',
+      value: '5',
+    },
+    {
+      label: 'Sábado',
+      value: '6',
+    },
+  ];
+
   return (
     <div id="teacher-register-container" className="container">
       <Header
@@ -74,6 +105,23 @@ const Register: React.FC = () => {
             label="Custo da sua aula por hora (em R$)"
             type="text"
           />
+        </fieldset>
+
+        <fieldset>
+          <legend>
+            Horários disponíveis
+            <button type="button"> + Novo horário</button>
+          </legend>
+
+          <div className="schedule-section">
+            <Select
+              name="weekDay"
+              label="Dia da semana"
+              options={weekDayOptions}
+            />
+            <Input name="from" label="Das" type="time" />
+            <Input name="to" label="Às" type="time" />
+          </div>
         </fieldset>
 
         <footer>
