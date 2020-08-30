@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import api from '../../services/api';
 import logo from '../../assets/images/logo.svg';
 import landingImage from '../../assets/images/landing.svg';
 import studyIcon from '../../assets/icons/study.svg';
@@ -7,6 +8,16 @@ import teachIcon from '../../assets/icons/give-classes.svg';
 import './styles.css';
 
 const Home: React.FC = () => {
+  const [totalConnections, setTotalConnections] = useState<number>(0);
+
+  useEffect(() => {
+    api.get('/connections').then((response) => {
+      const connections = response.data.total;
+
+      setTotalConnections(connections);
+    });
+  }, []);
+
   return (
     <div className="homepage-container">
       <div id="homepage-content" className="container">
@@ -29,7 +40,7 @@ const Home: React.FC = () => {
         </div>
 
         <span className="total-connections">
-          Total de 100 conexões já realizadas
+          Total de {totalConnections} conexões já realizadas
         </span>
       </div>
     </div>
