@@ -1,25 +1,31 @@
 import React, {useState, FormEvent} from 'react';
+import {useHistory} from 'react-router-dom';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
+import Textarea from '../../components/Textarea';
 import warningIcon from '../../assets/icons/warning.svg';
 import './styles.css';
+import api from '../../services/api';
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     avatar: '',
     whatsapp: '',
+    bio: '',
     subject: '',
     price: 0,
     schedules: [
       {
-        weekDay: 0,
+        week_day: 0,
         from: '',
         to: '',
       },
     ],
   });
+
+  const history = useHistory();
 
   const addNewSchedule = () => {
     setFormData({
@@ -27,7 +33,7 @@ const Register: React.FC = () => {
       schedules: [
         ...formData.schedules,
         {
-          weekDay: 0,
+          week_day: 0,
           from: '',
           to: '',
         },
@@ -56,6 +62,19 @@ const Register: React.FC = () => {
 
   const createClass = (event: FormEvent) => {
     event.preventDefault();
+
+    api
+      .post('/classes', formData)
+      .then(() => {
+        alert('Aula cadastrada com sucesso!');
+
+        history.push('/');
+      })
+      .catch(() => {
+        alert(
+          'Ocorreu um erro ao cadastrar a aula. Por favor, tente novamente',
+        );
+      });
   };
 
   const subjectOptions = [
@@ -171,6 +190,14 @@ const Register: React.FC = () => {
               setFormData({...formData, whatsapp: event.target.value})
             }
           />
+          <Textarea
+            name="bio"
+            label="Bio"
+            value={formData.bio}
+            onChange={(event) =>
+              setFormData({...formData, bio: event.target.value})
+            }
+          />
         </fieldset>
 
         <fieldset>
@@ -206,11 +233,11 @@ const Register: React.FC = () => {
           {formData.schedules.map((schedule, index) => (
             <div key={`schedule-${index}`} className="schedule-section">
               <Select
-                name="weekDay"
+                name="week_day"
                 label="Dia da semana"
                 options={weekDayOptions}
                 onChange={(event) =>
-                  setScheduleValue(index, 'weekDay', event.target.value)
+                  setScheduleValue(index, 'week_day', event.target.value)
                 }
               />
               <Input

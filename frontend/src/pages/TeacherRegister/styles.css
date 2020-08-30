@@ -12,7 +12,7 @@
   width: 100%;
   max-width: 76.4rem;
   border-radius: 0.8rem;
-  margin: -3.2rem auto 3.2rem;
+  margin: -2rem auto 3.2rem;
   padding-top: 6.4rem;
   overflow: hidden;
 }
@@ -28,6 +28,10 @@
 
 #teacher-register-container main fieldset select {
   margin-bottom: 1.4rem;
+}
+
+#teacher-register-container main fieldset .textarea-box {
+  margin-top: 1.6rem;
 }
 
 #teacher-register-container main fieldset legend {

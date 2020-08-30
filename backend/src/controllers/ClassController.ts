@@ -15,7 +15,7 @@ interface CreateRequest {
   bio: string;
   subject: string;
   price: number;
-  schedule: Schedule[];
+  schedules: Schedule[];
 }
 
 class ClassController {
@@ -23,11 +23,11 @@ class ClassController {
     const {
       name,
       avatar,
+      whatsapp,
       bio,
       subject,
       price,
-      schedule,
-      whatsapp,
+      schedules,
     } = request.body as CreateRequest;
 
     const trx = await database.transaction();
@@ -50,7 +50,7 @@ class ClassController {
 
       const class_id = insertedClassesIds[0];
 
-      const classSchedule = schedule.map((scheduleItem: Schedule) => {
+      const classSchedule = schedules.map((scheduleItem: Schedule) => {
         return {
           week_day: scheduleItem.week_day,
           from: convertHourToMinutes(scheduleItem.from),
