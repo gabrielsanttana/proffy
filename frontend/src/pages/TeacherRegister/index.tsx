@@ -9,14 +9,21 @@ const Register: React.FC = () => {
   const [formData, setFormData] = useState({});
   const [schedules, setSchedules] = useState([
     {
-      weekDay: '',
+      weekDay: 0,
       from: '',
       to: '',
     },
   ]);
 
   const addNewSchedule = () => {
-    setSchedules([...schedules]);
+    setSchedules([
+      ...schedules,
+      {
+        weekDay: 0,
+        from: '',
+        to: '',
+      },
+    ]);
   };
 
   const subjectOptions = [
@@ -128,7 +135,7 @@ const Register: React.FC = () => {
             </button>
           </legend>
 
-          {schedules.map((schedule) => (
+          {schedules.map((schedule, index) => (
             <div className="schedule-section">
               <Select
                 name="weekDay"
