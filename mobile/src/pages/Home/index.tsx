@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
+import api from '../../services/api';
 import {useNavigation} from '@react-navigation/native';
 import landingImage from '../../assets/images/landing.png';
 import studyIcon from '../../assets/icons/study.png';
@@ -8,9 +9,15 @@ import heartIcon from '../../assets/icons/heart.png';
 import styles from './styles';
 
 const Home: React.FC = () => {
-  const navigator = useNavigation();
+  const [totalConnections, setTotalConnections] = useState<number>(0);
 
-  const totalConnections = 100;
+  useEffect(() => {
+    api.get('/connections').then((response) => {
+      setTotalConnections(response.data.total);
+    });
+  }, []);
+
+  const navigator = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -39,7 +46,7 @@ const Home: React.FC = () => {
       </View>
 
       <Text style={styles.totalConnections}>
-        Total de {totalConnections} realizadas {''}
+        Total de {totalConnections} conexões realizadas {''}
         <Image source={heartIcon} />
       </Text>
     </View>
