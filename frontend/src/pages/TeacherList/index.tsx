@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState, FormEvent} from 'react';
+import api from '../../services/api';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
@@ -6,6 +7,27 @@ import TeacherCard from '../../components/TeacherCard';
 import './styles.css';
 
 const TeacherList: React.FC = () => {
+  const [availableClasses, setAvailableClasses] = useState([]);
+  const [formData, setFormData] = useState({
+    subject: '',
+    week_day: '',
+    from: '',
+  });
+
+  const searchForClasses = async (event: FormEvent) => {
+    event.preventDefault();
+
+    const response = await api.get('/classes', {
+      params: {
+        subject: '',
+        week_day: '',
+        from: '',
+      },
+    });
+
+    setAvailableClasses(response.data);
+  };
+
   const subjectOptions = [
     {
       label: 'Artes',
@@ -80,17 +102,42 @@ const TeacherList: React.FC = () => {
     },
   ];
 
+  console.log('formData', formData);
+  console.log('availableClasses', availableClasses);
+
   return (
     <div id="teacher-list-container" className="container">
       <Header title="Estes são os proffys disponíveis.">
         <form id="search-teachers">
-          <Select name="subject" label="Matéria" options={subjectOptions} />
+          <Select
+            name="subject"
+            label="Matéria"
+            options={subjectOptions}
+            onChange={(event) =>
+              setFormData({...formData, subject: event.target.value})
+            }
+          />
           <Select
             name="weekday"
             label="Dia da semana"
             options={weekDayOptions}
+            onChange={(event) =>
+              setFormData({...formData, week_day: event.target.value})
+            }
           />
-          <Input name="hour" label="Horário" type="time" />
+          <Input
+            name="hour"
+            label="Horário"
+            type="time"
+            value={formData.from}
+            onChange={(event) =>
+              setFormData({...formData, from: event.target.value})
+            }
+          />
+
+          <button type="submit" onClick={searchForClasses}>
+            Buscar
+          </button>
         </form>
       </Header>
 
