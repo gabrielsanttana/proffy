@@ -6,7 +6,11 @@ import unfavoriteIcon from '../../assets/icons/unfavorite.png';
 import whatsappIcon from '../../assets/icons/whatsapp.png';
 import styles from './styles';
 
-const TeacherCard: React.FC = () => {
+interface TeacherCardProps {
+  favorite: boolean;
+}
+
+const TeacherCard: React.FC<TeacherCardProps> = ({favorite}) => {
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
@@ -29,12 +33,14 @@ const TeacherCard: React.FC = () => {
         </Text>
 
         <View style={styles.buttonsContainer}>
-          <RectButton style={styles.favoriteButton}>
-            <Image source={favoriteIcon} style={styles.buttonIcon} />
+          <RectButton
+            style={[styles.favoriteButton, favorite && styles.favorite]}
+          >
+            <Image source={favorite ? unfavoriteIcon : favoriteIcon} />
           </RectButton>
 
           <RectButton style={styles.whatsappButton}>
-            <Image source={whatsappIcon} style={styles.buttonIcon} />
+            <Image source={whatsappIcon} />
             <Text style={styles.contactButtonText}>Entrar em contato</Text>
           </RectButton>
         </View>

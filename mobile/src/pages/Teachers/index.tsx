@@ -16,11 +16,11 @@ const Teachers: React.FC = () => {
           paddingBottom: 16,
         }}
       >
-        <TeacherCard />
-        <TeacherCard />
-        <TeacherCard />
-        <TeacherCard />
-        <TeacherCard />
+        <TeacherCard favorite />
+        <TeacherCard favorite />
+        <TeacherCard favorite />
+        <TeacherCard favorite />
+        <TeacherCard favorite />
       </ScrollView>
     </View>
   );

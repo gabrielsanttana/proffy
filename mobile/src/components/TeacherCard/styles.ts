@@ -82,6 +82,10 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
 
+  favorite: {
+    backgroundColor: '#e33d3d',
+  },
+
   whatsappButton: {
     backgroundColor: '#04d361',
     flex: 1,
@@ -98,8 +102,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 16,
   },
-
-  buttonIcon: {},
 });
 
 export default styles;
