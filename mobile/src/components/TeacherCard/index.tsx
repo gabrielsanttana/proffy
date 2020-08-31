@@ -29,13 +29,13 @@ const TeacherCard: React.FC = () => {
         </Text>
 
         <View style={styles.buttonsContainer}>
-          <RectButton style={[styles.button, styles.favorite]}>
+          <RectButton style={styles.favoriteButton}>
             <Image source={favoriteIcon} style={styles.buttonIcon} />
           </RectButton>
 
-          <RectButton style={[styles.button, styles.whatsapp]}>
+          <RectButton style={styles.whatsappButton}>
             <Image source={whatsappIcon} style={styles.buttonIcon} />
-            Entrar em contato
+            <Text style={styles.contactButtonText}>Entrar em contato</Text>
           </RectButton>
         </View>
       </View>
