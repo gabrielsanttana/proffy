@@ -3,15 +3,15 @@ import api from '../../services/api';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
-import TeacherCard from '../../components/TeacherCard';
+import TeacherCard, {Teacher} from '../../components/TeacherCard';
 import './styles.css';
 
 const TeacherList: React.FC = () => {
-  const [availableClasses, setAvailableClasses] = useState([]);
+  const [availableTeachers, setAvailableTeachers] = useState([]);
   const [formData, setFormData] = useState({
     subject: '',
     week_day: '',
-    from: '',
+    hour: '',
   });
 
   const searchForClasses = async (event: FormEvent) => {
@@ -19,13 +19,13 @@ const TeacherList: React.FC = () => {
 
     const response = await api.get('/classes', {
       params: {
-        subject: '',
-        week_day: '',
-        from: '',
+        subject: formData.subject,
+        week_day: formData.week_day,
+        hour: formData.hour,
       },
     });
 
-    setAvailableClasses(response.data);
+    setAvailableTeachers(response.data);
   };
 
   const subjectOptions = [
@@ -102,9 +102,6 @@ const TeacherList: React.FC = () => {
     },
   ];
 
-  console.log('formData', formData);
-  console.log('availableClasses', availableClasses);
-
   return (
     <div id="teacher-list-container" className="container">
       <Header title="Estes são os proffys disponíveis.">
@@ -129,9 +126,9 @@ const TeacherList: React.FC = () => {
             name="hour"
             label="Horário"
             type="time"
-            value={formData.from}
+            value={formData.hour}
             onChange={(event) =>
-              setFormData({...formData, from: event.target.value})
+              setFormData({...formData, hour: event.target.value})
             }
           />
 
@@ -142,7 +139,11 @@ const TeacherList: React.FC = () => {
       </Header>
 
       <main>
-        <TeacherCard />
+        {availableTeachers.map((availableTeacher: Teacher) => {
+          return (
+            <TeacherCard teacher={availableTeacher} key={availableTeacher.id} />
+          );
+        })}
       </main>
     </div>
   );

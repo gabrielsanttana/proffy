@@ -2,31 +2,37 @@ import React from 'react';
 import whatsappIcon from '../../assets/icons/whatsapp.svg';
 import './styles.css';
 
-const TeacherCard: React.FC = () => {
+export interface Teacher {
+  id: number;
+  avatar: string;
+  name: string;
+  subject: string;
+  bio: string;
+  price: number;
+  whatsapp: string;
+}
+
+interface TeacherCardProps {
+  teacher: Teacher;
+}
+
+const TeacherCard: React.FC<TeacherCardProps> = ({teacher}) => {
   return (
     <article className="teacher-card">
       <header>
-        <img
-          src="https://avatars0.githubusercontent.com/u/47339825?s=460&u=185ed18386f6fe2aac392ab8968a25139dc1c087&v=4"
-          alt="Gabriel Santana"
-        />
+        <img src={teacher.avatar} alt={teacher.name} />
 
         <div>
-          <strong>Gabriel Santana</strong>
-          <span>Matemática</span>
+          <strong>{teacher.name}</strong>
+          <span>{teacher.subject}</span>
         </div>
       </header>
 
-      <p>
-        Professor de matemática
-        <br />
-        <br />
-        Atualmente lecionando cálculo III
-      </p>
+      <p>{teacher.bio}</p>
 
       <footer>
         <p>
-          Preço por hora: <strong>R$40,00</strong>
+          Preço por hora: <strong>R${teacher.price},00</strong>
         </p>
 
         <button type="button">
