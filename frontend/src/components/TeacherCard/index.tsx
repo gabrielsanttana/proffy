@@ -35,10 +35,14 @@ const TeacherCard: React.FC<TeacherCardProps> = ({teacher}) => {
           Preço por hora: <strong>R${teacher.price},00</strong>
         </p>
 
-        <button type="button">
+        <a
+          href={`https://wa.me/${teacher.whatsapp}`}
+          type="button"
+          target="__blank"
+        >
           <img src={whatsappIcon} alt="Whatsapp" />
           Entrar em contato
-        </button>
+        </a>
       </footer>
     </article>
   );
