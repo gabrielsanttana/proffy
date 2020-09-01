@@ -8,6 +8,7 @@ const Favorites: React.FC = () => {
   return (
     <View style={styles.container}>
       <Header title="Meu proffys favoritos" />
+
       <ScrollView
         style={styles.teacherList}
         contentContainerStyle={{
