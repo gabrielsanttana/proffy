@@ -10,16 +10,28 @@ const Teachers: React.FC = () => {
       <Header title="Proffys disponíveis">
         <View style={styles.searchForm}>
           <Text style={styles.label}>Matéria</Text>
-          <TextInput style={styles.input} placeholder="Qual a matéria" />
+          <TextInput
+            style={styles.input}
+            placeholder="Qual a matéria?"
+            placeholderTextColor="#c1bccc"
+          />
 
-          <View>
-            <View>
+          <View style={styles.inputGroup}>
+            <View style={styles.inputBox}>
               <Text style={styles.label}>Dia da semana</Text>
-              <TextInput style={styles.input} placeholder="Dia da semana" />
+              <TextInput
+                style={styles.input}
+                placeholder="Qual o dia?"
+                placeholderTextColor="#c1bccc"
+              />
             </View>
-            <View>
+            <View style={styles.inputBox}>
               <Text style={styles.label}>Horário</Text>
-              <TextInput style={styles.input} placeholder="Horário" />
+              <TextInput
+                style={styles.input}
+                placeholder="Qual horário?"
+                placeholderTextColor="#c1bccc"
+              />
             </View>
           </View>
         </View>

@@ -10,7 +10,7 @@ interface HeaderProps {
   title?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({title}) => {
+const Header: React.FC<HeaderProps> = ({title, children}) => {
   const {navigate} = useNavigation();
 
   return (
@@ -26,6 +26,8 @@ const Header: React.FC<HeaderProps> = ({title}) => {
       </View>
 
       <Text style={styles.title}>{title}</Text>
+
+      {children}
     </View>
   );
 };
