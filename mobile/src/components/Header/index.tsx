@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {View, Text, Image} from 'react-native';
 import {BorderlessButton} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
@@ -8,9 +8,10 @@ import styles from './styles';
 
 interface HeaderProps {
   title?: string;
+  rightComponent?: ReactNode;
 }
 
-const Header: React.FC<HeaderProps> = ({title, children}) => {
+const Header: React.FC<HeaderProps> = ({title, rightComponent, children}) => {
   const {navigate} = useNavigation();
 
   return (
@@ -25,7 +26,11 @@ const Header: React.FC<HeaderProps> = ({title, children}) => {
         </BorderlessButton>
       </View>
 
-      <Text style={styles.title}>{title}</Text>
+      <View style={styles.header}>
+        <Text style={styles.title}>{title}</Text>
+
+        {rightComponent}
+      </View>
 
       {children}
     </View>
