@@ -4,7 +4,7 @@ import {BorderlessButton, RectButton} from 'react-native-gesture-handler';
 import {Feather} from '@expo/vector-icons';
 import api from '../../services/api';
 import Header from '../../components/Header';
-import TeacherCard from '../../components/TeacherCard';
+import TeacherCard, {Teacher} from '../../components/TeacherCard';
 import styles from './styles';
 
 const Teachers: React.FC = () => {
@@ -15,10 +15,19 @@ const Teachers: React.FC = () => {
   });
   const [availableTeachers, setAvailableTeachers] = useState([]);
   const [areFiltersVisible, setAreFiltersVisible] = useState<boolean>(true);
+  const [searchResultMessage, setSearchResultMessage] = useState<string>('');
 
   const searchClasses = async () => {
     const response = await api.get('/classes', {params: formData});
 
+    if (response.data.length <= 0) {
+      setSearchResultMessage(
+        'Não há professores disponíveis com essas especificações no momento :/',
+      );
+      return setAvailableTeachers([]);
+    }
+
+    setSearchResultMessage('');
     setAvailableTeachers(response.data);
   };
 
@@ -83,9 +92,19 @@ const Teachers: React.FC = () => {
           paddingBottom: 16,
         }}
       >
-        {availableTeachers?.map((availableTeacher) => {
-          return <TeacherCard favorite key={availableTeacher} />;
+        {availableTeachers?.map((availableTeacher: Teacher) => {
+          return (
+            <TeacherCard
+              teacher={availableTeacher}
+              isFavorite
+              key={availableTeacher.id}
+            />
+          );
         })}
+
+        {searchResultMessage ? (
+          <Text style={styles.searchResultMessage}>{searchResultMessage}</Text>
+        ) : null}
       </ScrollView>
     </View>
   );

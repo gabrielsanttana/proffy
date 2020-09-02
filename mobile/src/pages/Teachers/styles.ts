@@ -53,6 +53,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Archivo_700Bold',
     fontSize: 16,
   },
+
+  searchResultMessage: {
+    marginTop: 70,
+    textAlign: 'center',
+    color: '#ccc',
+    fontFamily: 'Poppins_400Regular',
+  },
 });
 
 export default styles;

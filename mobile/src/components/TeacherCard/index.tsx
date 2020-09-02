@@ -6,37 +6,46 @@ import unfavoriteIcon from '../../assets/icons/unfavorite.png';
 import whatsappIcon from '../../assets/icons/whatsapp.png';
 import styles from './styles';
 
-interface TeacherCardProps {
-  favorite: boolean;
+export interface Teacher {
+  id: number;
+  avatar: string;
+  name: string;
+  subject: string;
+  bio: string;
+  price: number;
+  whatsapp: string;
 }
 
-const TeacherCard: React.FC<TeacherCardProps> = ({favorite}) => {
+interface TeacherCardProps {
+  isFavorite: boolean;
+  teacher: Teacher;
+}
+
+const TeacherCard: React.FC<TeacherCardProps> = ({teacher, isFavorite}) => {
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
-        <Image
-          source={{uri: 'https://github.com/diego3g.png'}}
-          style={styles.avatar}
-        />
+        <Image source={{uri: teacher.avatar}} style={styles.avatar} />
 
         <View style={styles.profileInfo}>
-          <Text style={styles.name}>Gabriel Santana</Text>
-          <Text style={styles.subject}>Geografia</Text>
+          <Text style={styles.name}>{teacher.name}</Text>
+          <Text style={styles.subject}>{teacher.subject}</Text>
         </View>
       </View>
 
-      <Text style={styles.bio}>Biografia</Text>
+      <Text style={styles.bio}>{teacher.bio}</Text>
 
       <View style={styles.footer}>
         <Text style={styles.price}>
-          Preço/hora {'   '} <Text style={styles.value}>R$20,00</Text>
+          Preço/hora {'   '}{' '}
+          <Text style={styles.value}>{`R${teacher.price},00`}</Text>
         </Text>
 
         <View style={styles.buttonsContainer}>
           <RectButton
-            style={[styles.favoriteButton, favorite && styles.favorite]}
+            style={[styles.favoriteButton, isFavorite && styles.favorite]}
           >
-            <Image source={favorite ? unfavoriteIcon : favoriteIcon} />
+            <Image source={isFavorite ? unfavoriteIcon : favoriteIcon} />
           </RectButton>
 
           <RectButton style={styles.whatsappButton}>
