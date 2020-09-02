@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, ScrollView, TextInput, Text} from 'react-native';
 import {BorderlessButton, RectButton} from 'react-native-gesture-handler';
 import {Feather} from '@expo/vector-icons';
+import api from '../../services/api';
 import Header from '../../components/Header';
 import TeacherCard from '../../components/TeacherCard';
 import styles from './styles';
@@ -12,7 +13,14 @@ const Teachers: React.FC = () => {
     week_day: '',
     hour: '',
   });
-  const [areFiltersVisible, setAreFiltersVisible] = useState<boolean>(false);
+  const [availableTeachers, setAvailableTeachers] = useState([]);
+  const [areFiltersVisible, setAreFiltersVisible] = useState<boolean>(true);
+
+  const searchClasses = async () => {
+    const response = await api.get('/classes', {params: formData});
+
+    setAvailableTeachers(response.data);
+  };
 
   const filtersButton = (
     <BorderlessButton onPress={() => setAreFiltersVisible(!areFiltersVisible)}>
@@ -58,7 +66,10 @@ const Teachers: React.FC = () => {
               </View>
             </View>
 
-            <RectButton style={styles.searchButton}>
+            <RectButton
+              style={styles.searchButton}
+              onPress={() => searchClasses()}
+            >
               <Text style={styles.searchButtonText}>Buscar</Text>
             </RectButton>
           </View>
@@ -72,11 +83,9 @@ const Teachers: React.FC = () => {
           paddingBottom: 16,
         }}
       >
-        <TeacherCard favorite />
-        <TeacherCard favorite />
-        <TeacherCard favorite />
-        <TeacherCard favorite />
-        <TeacherCard favorite />
+        {availableTeachers?.map((availableTeacher) => {
+          return <TeacherCard favorite key={availableTeacher} />;
+        })}
       </ScrollView>
     </View>
   );
