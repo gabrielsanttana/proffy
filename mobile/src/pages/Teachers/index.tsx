@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, ScrollView, TextInput, Text} from 'react-native';
 import {BorderlessButton, RectButton} from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-community/async-storage';
 import {Feather} from '@expo/vector-icons';
 import api from '../../services/api';
 import Header from '../../components/Header';
@@ -14,8 +15,23 @@ const Teachers: React.FC = () => {
     hour: '',
   });
   const [availableTeachers, setAvailableTeachers] = useState([]);
+  const [favoriteTeachers, setFavoriteTeachers] = useState<number[]>([]);
   const [areFiltersVisible, setAreFiltersVisible] = useState<boolean>(true);
   const [searchResultMessage, setSearchResultMessage] = useState<string>('');
+
+  useEffect(() => {
+    AsyncStorage.getItem('favoriteTeachers').then((response) => {
+      if (response) {
+        const favoriteTeacherIds = JSON.parse(response).map(
+          (favoriteTeacher: Teacher) => {
+            return favoriteTeacher.id;
+          },
+        );
+
+        setFavoriteTeachers(favoriteTeacherIds);
+      }
+    });
+  }, []);
 
   const searchClasses = async () => {
     const response = await api.get('/classes', {params: formData});
@@ -98,7 +114,7 @@ const Teachers: React.FC = () => {
           return (
             <TeacherCard
               teacher={availableTeacher}
-              isFavorite
+              isFavorite={favoriteTeachers.includes(availableTeacher.id)}
               key={availableTeacher.id}
             />
           );
