@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, Linking} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import favoriteIcon from '../../assets/icons/heart-outline.png';
 import unfavoriteIcon from '../../assets/icons/unfavorite.png';
@@ -22,6 +22,10 @@ interface TeacherCardProps {
 }
 
 const TeacherCard: React.FC<TeacherCardProps> = ({teacher, isFavorite}) => {
+  const redirectToWhatsapp = () => {
+    Linking.openURL(`whatsapp://send?phone=${teacher.whatsapp}`);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
@@ -48,7 +52,10 @@ const TeacherCard: React.FC<TeacherCardProps> = ({teacher, isFavorite}) => {
             <Image source={isFavorite ? unfavoriteIcon : favoriteIcon} />
           </RectButton>
 
-          <RectButton style={styles.whatsappButton}>
+          <RectButton
+            style={styles.whatsappButton}
+            onPress={() => redirectToWhatsapp()}
+          >
             <Image source={whatsappIcon} />
             <Text style={styles.contactButtonText}>Entrar em contato</Text>
           </RectButton>

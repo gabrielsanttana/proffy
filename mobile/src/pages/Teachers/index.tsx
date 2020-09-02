@@ -24,10 +24,12 @@ const Teachers: React.FC = () => {
       setSearchResultMessage(
         'Não há professores disponíveis com essas especificações no momento :/',
       );
+      setAreFiltersVisible(true);
       return setAvailableTeachers([]);
     }
 
     setSearchResultMessage('');
+    setAreFiltersVisible(false);
     setAvailableTeachers(response.data);
   };
 
