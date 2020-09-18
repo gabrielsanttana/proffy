@@ -4,6 +4,7 @@ import {RectButton} from 'react-native-gesture-handler';
 import favoriteIcon from '../../assets/icons/heart-outline.png';
 import unfavoriteIcon from '../../assets/icons/unfavorite.png';
 import whatsappIcon from '../../assets/icons/whatsapp.png';
+import api from '../../services/api';
 import styles from './styles';
 
 export interface Teacher {
@@ -24,7 +25,11 @@ interface TeacherCardProps {
 const TeacherCard: React.FC<TeacherCardProps> = ({teacher, isFavorite}) => {
   const [isTeacherFavorite, setIsTeacherFavorite] = useState(isFavorite);
 
-  const redirectToWhatsapp = () => {
+  const redirectToWhatsapp = async () => {
+    await api.post('/connections', {
+      user_id: teacher.id,
+    });
+
     Linking.openURL(`whatsapp://send?phone=${teacher.whatsapp}`);
   };
 
