@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, ScrollView, TextInput, Text} from 'react-native';
 import {BorderlessButton, RectButton} from 'react-native-gesture-handler';
+import {useFocusEffect} from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Feather} from '@expo/vector-icons';
 import api from '../../services/api';
@@ -11,15 +12,15 @@ import styles from './styles';
 const Teachers: React.FC = () => {
   const [formData, setFormData] = useState({
     subject: '',
-    week_day: '',
-    hour: '',
+    week_day: '1',
+    hour: '9:00',
   });
   const [availableTeachers, setAvailableTeachers] = useState([]);
   const [favoriteTeachers, setFavoriteTeachers] = useState<number[]>([]);
   const [areFiltersVisible, setAreFiltersVisible] = useState<boolean>(true);
   const [searchResultMessage, setSearchResultMessage] = useState<string>('');
 
-  useEffect(() => {
+  const loadFavoriteTeachers = async () => {
     AsyncStorage.getItem('favoriteTeachers').then((response) => {
       if (response) {
         const favoriteTeacherIds = JSON.parse(response).map(
@@ -31,7 +32,11 @@ const Teachers: React.FC = () => {
         setFavoriteTeachers(favoriteTeacherIds);
       }
     });
-  }, []);
+  };
+
+  useFocusEffect(() => {
+    loadFavoriteTeachers();
+  });
 
   const searchClasses = async () => {
     const response = await api.get('/classes', {params: formData});
@@ -93,10 +98,7 @@ const Teachers: React.FC = () => {
               </View>
             </View>
 
-            <RectButton
-              style={styles.searchButton}
-              onPress={() => searchClasses()}
-            >
+            <RectButton style={styles.searchButton} onPress={searchClasses}>
               <Text style={styles.searchButtonText}>Buscar</Text>
             </RectButton>
           </View>

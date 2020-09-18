@@ -51,12 +51,12 @@ const TeacherCard: React.FC<TeacherCardProps> = ({teacher, isFavorite}) => {
       favoriteTeachersArray.push(teacher);
 
       setIsTeacherFavorite(true);
-
-      await AsyncStorage.setItem(
-        'favoriteTeachers',
-        JSON.stringify(favoriteTeachersArray),
-      );
     }
+
+    await AsyncStorage.setItem(
+      'favoriteTeachers',
+      JSON.stringify(favoriteTeachersArray),
+    );
   };
 
   return (
@@ -84,14 +84,14 @@ const TeacherCard: React.FC<TeacherCardProps> = ({teacher, isFavorite}) => {
               styles.favoriteButton,
               isTeacherFavorite && styles.favorite,
             ]}
-            onPress={() => toggleFavorite()}
+            onPress={toggleFavorite}
           >
             <Image source={isTeacherFavorite ? unfavoriteIcon : favoriteIcon} />
           </RectButton>
 
           <RectButton
             style={styles.whatsappButton}
-            onPress={() => redirectToWhatsapp()}
+            onPress={redirectToWhatsapp}
           >
             <Image source={whatsappIcon} />
             <Text style={styles.contactButtonText}>Entrar em contato</Text>
