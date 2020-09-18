@@ -9,10 +9,6 @@ import {useFocusEffect} from '@react-navigation/native';
 const Favorites: React.FC = () => {
   const [favoriteTeachers, setFavoriteTeachers] = useState([]);
 
-  useEffect(() => {
-    AsyncStorage.clear();
-  }, []);
-
   function loadFavoriteTeachers() {
     AsyncStorage.getItem('favoriteTeachers').then((response) => {
       if (response) {

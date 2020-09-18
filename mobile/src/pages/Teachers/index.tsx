@@ -39,6 +39,8 @@ const Teachers: React.FC = () => {
   });
 
   const searchClasses = async () => {
+    loadFavoriteTeachers();
+
     const response = await api.get('/classes', {params: formData});
 
     if (response.data.length <= 0) {
