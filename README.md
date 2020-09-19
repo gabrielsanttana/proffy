@@ -49,7 +49,7 @@ Then:
 
 ```bash
 $ cd proffy/backend
-$ yarn add
+$ yarn
 $ yarn run migrate
 $ yarn run seed
 $ yarn start
@@ -63,7 +63,7 @@ The API will start serving on http://localhost:3333
 
 ```bash
 $ cd proffy/frontend
-$ yarn add
+$ yarn
 $ yarn start
 ```
 
@@ -87,7 +87,7 @@ With that:
 ```bash
 $ yarn add -g expo-cli
 $ cd proffy/mobile
-$ yarn add
+$ yarn
 $ expo install
 $ yarn start
 ```
