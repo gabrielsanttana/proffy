@@ -40,7 +40,7 @@ $ git clone https://github.com/gabrielsanttana/proffy
 ```bash
 $ cd proffy/backend
 $ yarn
-$ yarn run knew:migrate
+$ yarn run knex:migrate
 $ yarn dev:server
 ```
 
