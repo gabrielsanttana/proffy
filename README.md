@@ -71,7 +71,7 @@ const api = axios.create({
 });
 ```
 
-With that:
+Then:
 
 ```bash
 $ yarn add -g expo-cli
